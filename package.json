@@ -1,0 +1,9 @@
+{
+  "name": "zap-subscriber-template",
+  "version": "1.0.0",
+  "description": "Zap subscribers template, onchain subcriber, offchain subscriber",
+  "main": "lib/index.js",
+  "author": "propulsor, zap.org",
+  "license": "MIT",
+  "private": false
+}
