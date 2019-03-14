@@ -1,13 +1,6 @@
 pragma solidity ^0.4.24;
 import "./ERC20.sol";
-
-contract ZapBridge{
-	function getContract(string contractName) public view returns (address); //coordinator
-	function calcZapForDots(address, bytes32, uint256) external view returns (uint256); //bondage
-	function delegateBond(address holderAddress, address oracleAddress, bytes32 endpoint, uint256 numDots) external returns (uint256 boundZap); //bondage
-	function query(address, string, bytes32, bytes32[]) external returns (uint256); //dispatch
-	function respondIntArray(uint256, string) external returns (bool); //dispatch
-}
+import "./ZapBridge.sol"
 
 
 contract Subscriber {
@@ -15,6 +8,8 @@ contract Subscriber {
 	address public owner;
 	ZapBridge public coordinator;
 	ERC20 token;
+	uint256 id;
+	Event ReceiveResponse(uint256 indexed _id, bytes32[] indexed _response);
 
 
 	constructor(address _coordinator) {
@@ -45,10 +40,12 @@ contract Subscriber {
 		return id;
 	}
 
-    //Implementing callback that will accept provider's respondIntArray
-    //Response method options  are  :respondBytes32Array, respondIntArray, respond1, respond2, respond3, respond4
-	function callback(uint256 _id, int[] _response) external{
+    //Implementing callback that provider will call
+    //Available callback options  are  :bytes32[], int[], positional 1,2,3,4 string responses
+	function callback(uint256 _id, bytes32[] _response) external{
 		require(_id==id);
+		emit ReceiveResponse(_id, _response);
+
         //Implement your logic with _response
 	}
 

@@ -3,7 +3,20 @@
   "version": "1.0.0",
   "description": "Zap subscribers template, onchain subcriber, offchain subscriber",
   "main": "lib/index.js",
-  "author": "propulsor, zap.org",
+  "author": "propulsor.ichimoku@gmail.com",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "@zapjs/bondage": "^2.0.19",
+    "@zapjs/subscriber": "^2.0.21",
+    "@zapjs/zaptoken": "^2.0.18",
+    "truffle-hdwallet-provider": "^1.0.5"
+  },
+  "scripts": {
+    "build": "./node_modules/.bin/tsc",
+    "start-offchain": "node lib/index.js"
+  },
+  "devDependencies": {
+    "typescript": "^3.3.3333"
+  }
 }
