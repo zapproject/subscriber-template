@@ -14,8 +14,9 @@
   },
   "scripts": {
     "build": "./node_modules/.bin/tsc",
-    "start-offchain": "node lib/index.js"
-  },
+    "start-offchain": "node lib/index.js",
+    "deploy":"./node_modules/.bin/truffle migrate"
+    },
   "devDependencies": {
     "typescript": "^3.3.3333"
   }
