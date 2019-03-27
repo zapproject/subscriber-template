@@ -33,15 +33,15 @@ contract Subscriber {
 	}
 
 	//Query offchain or onchain provider.
-	function queryProvider(string endpoint, bytes32[] params) returns (uint256) {
-        //specify who can query provider here
+	function queryProvider(address provider, bytes32 endpoint, string queryString, bytes32[] params) returns (uint256) {
+
 		address dispatchAddress = coordinator.getContract("DISPATCH");
-		id = ZapBridge(dispatchAddress).query(provider,coin,endpoint,params);
+		id = ZapBridge(dispatchAddress).query(provider,queryString,endpoint,params);
 		return id;
 	}
 
     //Implementing callback that provider will call
-    //Available callback options  are  :bytes32[], int[], positional 1,2,3,4 string responses
+    //Available callback options  are  bytes32[], int[], positional 1,2,3,4 string responses
 	function callback(uint256 _id, bytes32[] _response) external{
 		require(_id==id);
 		emit ReceiveResponse(_id, _response);
