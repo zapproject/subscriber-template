@@ -33,7 +33,7 @@ contract Subscriber {
 	}
 
 	//Query offchain or onchain provider.
-	function queryProvider(address provider, bytes32 endpoint, string queryString, bytes32[] params) returns (uint256) {
+	function queryProvider(string queryString, bytes32[] params) returns (uint256) {
 
 		address dispatchAddress = coordinator.getContract("DISPATCH");
 		id = ZapBridge(dispatchAddress).query(provider,queryString,endpoint,params);
